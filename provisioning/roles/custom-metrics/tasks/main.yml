@@ -32,7 +32,7 @@
     owner: root
     group: root
     force: yes
-    mode: 0666
+    mode: 0777
   with_items:
     - ping.sh
     - test-service.sh
