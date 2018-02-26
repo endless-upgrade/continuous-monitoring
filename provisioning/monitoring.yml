@@ -6,3 +6,4 @@
     - grafana
     - prometheus-node-exporter
     - prometheus-pushgateway
+    - custom-metrics
