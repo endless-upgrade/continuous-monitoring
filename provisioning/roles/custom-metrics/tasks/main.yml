@@ -37,8 +37,8 @@
     - ping.sh
     - test-service.sh
 
-- name: Ensure prometheus starts and run on startup
+- name: Ensure custom exporter starts and run on startup
   service:
-    name: prometheus
+    name: custom-exporter
     state: restarted
     enabled: yes
