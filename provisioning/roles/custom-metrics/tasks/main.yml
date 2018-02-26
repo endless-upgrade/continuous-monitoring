@@ -1,0 +1,44 @@
+- name: Install Wget
+  yum:
+     name: wget
+     state: latest
+     update_cache: true
+
+- name: Download CustomMetricExposer release
+  get_url:
+     url: https://github.com/endless-upgrade/CustomMetricExporter/releases/download/0.1/CustomMetricExporter-assembly-0.1.jar
+     dest: /opt/monitoring
+     mode: 0440
+
+- name: Copy exporter service file
+  copy:
+    src: custom-exporter.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+
+- name: Copy ansible check file
+  copy:
+    src: test-service.yml
+    dest: /opt/monitoring/
+    owner: root
+    group: root
+    force: yes
+
+- name: Copy ansible check file
+  copy:
+    src: "{{ item }}"
+    dest: /opt/monitoring/
+    owner: root
+    group: root
+    force: yes
+    mode: 0666
+  with_item:
+    - ping.sh
+    - test-service.sh
+
+- name: Ensure prometheus starts and run on startup
+  service:
+    name: prometheus
+    state: restarted
+    enabled: yes

@@ -1,0 +1,8 @@
+[Unit]
+Description=Custom Metric Exporter
+
+[Service]
+ExecStart=/opt/spark-2.2.0-bin-hadoop2.7/bin/spark-submit --master local --class JettyLauncher /opt/monitoring/CustomMetricExporter-assembly-0.1.jar
+
+[Install]
+WantedBy=default.target
