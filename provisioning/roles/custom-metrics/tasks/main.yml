@@ -33,7 +33,7 @@
     group: root
     force: yes
     mode: 0666
-  with_item:
+  with_items:
     - ping.sh
     - test-service.sh
 
